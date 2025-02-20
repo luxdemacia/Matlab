@@ -1,0 +1,38 @@
+📌 Pourquoi parle-t-on d'erreurs d’arrondi ?
+💡 Les ordinateurs ne peuvent pas représenter tous les nombres réels exactement en virgule flottante. Des erreurs d’arrondi se produisent lorsque certaines opérations perdent de la précision.
+
+🔹 Exemple d'erreur d’arrondi en MATLAB:
+x = 0.1 + 0.2;
+disp(x == 0.3)  % Vérifie si 0.1 + 0.2 est exactement égal à 0.3
+
+📌 Résultat :
+ans = 0   % (FAUX !)
+
+👉 Cela montre que 0.1 + 0.2 n’est pas exactement égal à 0.3 à cause des erreurs d’arrondi.
+
+Si on affiche plus de chiffres avec format long, on voit l’erreur :
+format long
+x
+
+📌 Résultat :
+x = 0.30000000000000004
+
+❗ L’erreur est petite, mais elle existe.
+
+
+📌 À quoi sert "eps" ?
+📌 eps est utile pour tester l’égalité numérique en tenant compte des erreurs d’arrondi.
+
+🔹 Au lieu d’écrire :
+if x == 0.3
+
+🔹 On compare avec une tolérance basée sur eps :
+if abs(x - 0.3) < eps
+    disp('x est presque égal à 0.3');
+end
+
+
+📌 Résumé de eps en MATLAB
+eps ≈ 2.22 × 10⁻¹⁶ en précision double (64 bits).
+C'est la plus petite valeur positive qui peut être ajoutée à 1 pour obtenir un nombre distinct de 1.
+Toute valeur inférieure à eps est considérée comme négligeable dans les calculs numériques.
